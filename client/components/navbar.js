@@ -3,12 +3,12 @@ function NavBar() {
 
 const admin = (sessionStorage.getItem('token')) ? `<div class='col'><a style='color:white;' href="#admin">Admin</a></div>` : '';
 
-return `<nav class="navbar navbar-dark bg-dark" id="nav">
+return `<nav class="navbar navbar-dark" id="nav" style="background-color: purple;">
     <div class="container-fluid">
         <div class='row'>
             <div class='col'>
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#home">Website Template</a>
+                    <a class="navbar-brand" href="#home">Humboldt Crystals</a>
                 </div>
             </div>
         </div>

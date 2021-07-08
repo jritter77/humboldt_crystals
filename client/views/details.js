@@ -8,7 +8,7 @@ async function Details() {
     const loc = location.hash.substr(1);
     const articleId = loc.split("-")[1];
 
-    const article = JSON.parse(await post('./server/getRecord.php', JSON.stringify({id: articleId})));
+    const article = JSON.parse(await post('./server/records/getRecord.php', JSON.stringify({id: articleId})));
 
     app.innerHTML = `
     <div class="row">

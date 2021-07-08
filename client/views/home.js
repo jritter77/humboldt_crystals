@@ -48,24 +48,25 @@ async function Home() {
 
     
     app.innerHTML = `
-    <div class="row no-gutters"  style="margin-top:5vw;">
-        <div class="col-md">
-            ${Carousel()}
-        </div>
-    </div>
+    
     <div class="row" id="aboutAndContact">
         <div 
-        class="col-md text-center border border-primary rounded" 
-        style="margin:5vw; padding-top:2vw;"
+        class="col-md text-center rounded" 
+        style="margin:5vw; margin-top:2vw; margin-bottom:0px; padding-top:2vw; border: 2px solid purple;"
         >
-            <h2>Small About Blurb</h2>
-            <p>This would be a space to say a sentence or two about the website.</p>
+            <h2>Humboldt Crystals</h2>
+            <p>Beautifully handcrafted beaded crystal sun catchers.</p>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-md" style="margin:4vw; margin-top:2vw; margin-bottom:0px;">
+            ${Carousel()}
         </div>
     </div>
     <div class="row" id="calendarAndNews">
         <div 
-        class="col-md text-center border border-primary rounded" 
-        style="margin:5vw; padding-top:2vw;"
+        class="col-md text-center rounded" 
+        style="margin:5vw; margin-top:2vw; margin-bottom:0px; padding-top:2vw; border: 2px solid purple;"
         >
             <h2>News Feed</h2>
             <div class='text-left overflow-auto' style='max-height: 80%;'>
@@ -102,15 +103,15 @@ const post = ({id, title, description}, index) => {
 
     return `
         <div 
-        onMouseOver='this.style.backgroundColor="cyan"'
-        onMouseOut='this.style.backgroundColor="white"'
-        class='newspost border border-primary' 
+        onMouseOver='this.style.backgroundColor="violet"'
+        onMouseOut='this.style.backgroundColor="white";'
+        class='newspost' 
         id='${index}'
         data-toggle='modal' 
         data-target="#exampleModal"
-        style='cursor: pointer; padding: 1em;'
+        style='cursor: pointer; padding: 1em; border: 1px solid purple; background-color:white;'
         >
-            <p style='color:blue'>#${id} - ${title}</p> ${description}
+            <p>#${id} - ${title}</p> ${description}
         </div>`;
 }
 

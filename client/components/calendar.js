@@ -98,7 +98,7 @@ function printDays(i, month) {
         return `<b 
                 id='${dCount[((month-1 < 0) ? 11 : month-1)] + i}'
                 class='day text-muted'
-                style="background-color: ${((dCount[prevMonth] + i) === c_date && prevMonth === c_month && year === c_year) ? 'aqua' : ''}"
+                style="background-color: ${((dCount[prevMonth] + i) === c_date && prevMonth === c_month && year === c_year) ? 'violet' : ''}"
                 >
                     ${dCount[((month-1 < 0) ? 11 : month-1)] + i}
                 </b>`;
@@ -107,7 +107,7 @@ function printDays(i, month) {
         return `<b 
                 id='${i - dCount[month]}'
                 class='day text-muted'
-                style="background-color: ${((i - dCount[month]) === c_date && nextMonth === c_month && year === c_year) ? 'aqua' : ''}"
+                style="background-color: ${((i - dCount[month]) === c_date && nextMonth === c_month && year === c_year) ? 'violet' : ''}"
                 >
                     ${i - dCount[month]}
                 </b>`;
@@ -116,7 +116,7 @@ function printDays(i, month) {
         return `<b 
                 id='${i}'
                 class='day'
-                style="background-color: ${(i === c_date && month === c_month && year === c_year) ? 'aqua' : ''}"
+                style="background-color: ${(i === c_date && month === c_month && year === c_year) ? 'violet' : ''}"
                 >
                     ${i}
                 </b>`;
@@ -240,10 +240,12 @@ function highlightDays() {
     $('.dayContainer').each((i, e) => {
         e.onmouseout = () => {e.style.borderColor="white"};
         if (!e.children[0].classList.contains('text-muted')) {
-            e.onmouseover = () => {e.style.borderColor="cyan"};
+            e.onmouseover = () => {e.style.borderColor="purple"};
+            e.style.cursor="pointer";
         }
         else {
             e.onmouseover = () => {e.style.borderColor="white"};
+            e.style.cursor="auto";
         } 
     })
 }
@@ -252,7 +254,8 @@ function highlightDays() {
 // Sets the innerHTML of the par element
 function Calendar(par) {
     $(`#${par}`).append(  `
-        <div class="col-md border border-primary rounded text-center xs-col-12 md-col-6" style="margin:5vw;min-width:30px;">
+        <div class="col-md rounded text-center xs-col-12 md-col-6" style="margin:5vw; margin-top:2vw; margin-bottom:0px;min-width:30px; border: 2px solid purple;">
+            <h3>Event Calendar</h3>
             <div class="row no-gutters">
                 <div class="col">
                     <button id="prevMonth" class="btn" ><b>&lt</b></button>

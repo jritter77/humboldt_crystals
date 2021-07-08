@@ -201,7 +201,7 @@ async function Catalog() {
 // Catalog Control Component
 const catalogCtl = () => `
     <div class='col-xs-1' style='margin-top:5vw;margin-right:3vw;'>
-        <div class='border border-primary rounded'>
+        <div class='rounded' style="border: 2px solid purple">
             <div class='row'>
                 <div class='col'>${filters()}</div>
                 <div class='col'>${priceRange()}</div>
@@ -228,7 +228,7 @@ const search = () => `
 
 // Filter Component
 const filters = () => {
-    const terms = ['test', 'things', 'stuff'];
+    const terms = ['jewelry', 'animal', 'nature'];
 
 
     let html = `<p>Filters:</p>`;
@@ -270,7 +270,7 @@ const priceRange = () => {
 // Admin Tools component
 const adminTools = () => {
     return `
-        <div class='border border-primary rounded' style='margin-top:1vw'>
+        <div class='rounded' style='margin-top:1vw;border: 2px solid purple'>
             <div style='margin:1vw'>
                 <p>ADMIN TOOLS</p>
                 <button class='btn btn-success' id='new_article_btn' data-toggle="modal" data-target="#exampleModal">New Article</button>
