@@ -254,7 +254,7 @@ function highlightDays() {
 // Sets the innerHTML of the par element
 function Calendar(par) {
     $(`#${par}`).append(  `
-        <div class="col-md rounded text-center xs-col-12 md-col-6" style="margin:5vw; margin-top:2vw; margin-bottom:0px;min-width:30px; border: 2px solid purple;">
+        <div class="col-md rounded text-center xs-col-12 md-col-6" style="margin:5vw; min-width:30px; border: 2px solid purple;">
             <h3>Event Calendar</h3>
             <div class="row no-gutters">
                 <div class="col">

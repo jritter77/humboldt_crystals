@@ -3,20 +3,21 @@ function NavBar() {
 
 const admin = (sessionStorage.getItem('token')) ? `<div class='col'><a style='color:white;' href="#admin">Admin</a></div>` : '';
 
-return `<nav class="navbar navbar-dark" id="nav" style="background-color: purple;">
+return `<nav class="navbar navbar-dark" id="nav" style="background: rgb(87,14,140);background: linear-gradient(45deg, rgba(87,14,140,1) 0%, rgba(255,0,220,1) 100%);">
     <div class="container-fluid">
         <div class='row'>
             <div class='col'>
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#home">Humboldt Crystals</a>
+                    <img src="./images/logo.png"  class="navbar-brand" href="#home">
+                    
                 </div>
             </div>
         </div>
         <div class='row'>
             ${admin}
-            <div class='col'><a style='color:white;' href="#catalog">Catalog</a></div>
-            <div class='col'><a style='color:white;' href="#about">About</a></div>
-            <div class='col'><a style='color:white;' href="#contact">Contact</a></div>
+            <div class='col'><b><a style='color:white;' href="#catalog">Catalog</a></b></div>
+            <div class='col'><b><a style='color:white;' href="#about">About</a></b></div>
+            <div class='col'><b><a style='color:white;' href="#contact">Contact</a></b></div>
         </div>
     </div>
 </nav>`;

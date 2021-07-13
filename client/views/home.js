@@ -48,25 +48,23 @@ async function Home() {
 
     
     app.innerHTML = `
-    
-    <div class="row" id="aboutAndContact">
-        <div 
-        class="col-md text-center rounded" 
-        style="margin:5vw; margin-top:2vw; margin-bottom:0px; padding-top:2vw; border: 2px solid purple;"
-        >
-            <h2>Humboldt Crystals</h2>
-            <p>Beautifully handcrafted beaded crystal sun catchers.</p>
+    <div class="row no-gutters">
+        <div class="col-md" style="margin-top:5vw;">
+            ${Carousel()}
         </div>
     </div>
-    <div class="row no-gutters">
-        <div class="col-md" style="margin:4vw; margin-top:2vw; margin-bottom:0px;">
-            ${Carousel()}
+    <div class="row" id="about">
+        <div 
+        class="col-md text-center" 
+        style="margin-top:5vw; background-image: url(./images/background.png);background-attachment: fixed;background-repeat: no-repeat;background-size: cover; padding: 2vw; font-family: Brush Script MT;"
+        >
+            <h1 style='color:white'>Beautifully Handcrafted Beaded Crystal Sun Catchers<//h1>
         </div>
     </div>
     <div class="row" id="calendarAndNews">
         <div 
         class="col-md text-center rounded" 
-        style="margin:5vw; margin-top:2vw; margin-bottom:0px; padding-top:2vw; border: 2px solid purple;"
+        style="margin:5vw; margin-top:5vw; padding-top:2vw; border: 2px solid purple;"
         >
             <h2>News Feed</h2>
             <div class='text-left overflow-auto' style='max-height: 80%;'>
@@ -105,7 +103,7 @@ const post = ({id, title, description}, index) => {
         <div 
         onMouseOver='this.style.backgroundColor="violet"'
         onMouseOut='this.style.backgroundColor="white";'
-        class='newspost' 
+        class='newspost rounded' 
         id='${index}'
         data-toggle='modal' 
         data-target="#exampleModal"
