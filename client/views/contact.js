@@ -1,5 +1,5 @@
 
-import {post} from '../webRequest.js';
+import {post} from '../models/webRequest.js';
 
 async function sendEmail(sub, msg, from) {
 

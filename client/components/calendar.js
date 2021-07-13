@@ -1,4 +1,4 @@
-import {getMonthEvents} from '../database.js';
+import {getMonthEvents} from '../models/events.js';
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 const dCount = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];

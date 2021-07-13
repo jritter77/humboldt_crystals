@@ -1,7 +1,7 @@
 import { Article } from "../components/article.js";
 import { Modal } from "../components/modal.js";
-import { addRecord, deleteRecord, getAllRecords } from "../database.js";
-import { verifySession } from "../sessions.js";
+import { addRecord, deleteRecord, getAllRecords } from "../models/articles.js";
+import { verifySession } from "../models/sessions.js";
 
 
 /** PAGE VARS */

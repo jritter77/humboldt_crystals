@@ -1,5 +1,5 @@
 import {Article} from "../components/article.js";
-import {get, post} from "../webRequest.js";
+import {get, post} from "../models/webRequest.js";
 
 
 async function Details() {

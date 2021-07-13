@@ -1,5 +1,5 @@
 import { Admin } from '../views/admin.js';
-import { startSession } from '../sessions.js';
+import { startSession } from '../models/sessions.js';
 
 async function handleSubmission(e) {
     e.preventDefault();

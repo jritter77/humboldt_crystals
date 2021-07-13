@@ -1,7 +1,7 @@
-import {getAllPosts, addNewsPost, deleteNewsPost, editNewsPost} from '../database.js';
+import {getAllPosts, addNewsPost, deleteNewsPost, editNewsPost} from '../models/posts.js';
 import { newsPost } from "../components/newsPost.js";
 import { Modal } from "../components/modal.js";
-import { verifySession } from "../sessions.js";
+import { verifySession } from "../models/sessions.js";
 
 let posts = [];
 

@@ -1,6 +1,6 @@
 import { Login } from "../components/login.js";
 import { ChangePassword } from "../components/changePassword.js";
-import { verifySession } from "../sessions.js";
+import { verifySession } from "../models/sessions.js";
 import { NavBar } from '../components/navbar.js';
 
 

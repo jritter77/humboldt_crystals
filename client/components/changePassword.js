@@ -1,5 +1,5 @@
 import { Admin } from '../views/admin.js';
-import { changePassword } from '../user.js';
+import { changePassword } from '../models/user.js';
 
 async function handleSubmission(e) {
     e.preventDefault();

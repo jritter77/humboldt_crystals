@@ -1,7 +1,7 @@
-import { addEvent, deleteEvent, editEvent } from '../database.js';
+import { addEvent, deleteEvent, editEvent } from '../models/events.js';
 import { Calendar, setEvents, getEventDetail } from '../components/calendar.js';
 import { Modal } from "../components/modal.js";
-import { verifySession } from "../sessions.js";
+import { verifySession } from "../models/sessions.js";
 
 
 

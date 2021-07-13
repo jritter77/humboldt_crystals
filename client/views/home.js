@@ -1,6 +1,6 @@
 import { Carousel } from "../components/carousel.js";
 import { Calendar, getEventDetail } from "../components/calendar.js";
-import { getAllPosts} from '../database.js';
+import { getAllPosts} from '../models/posts.js';
 import { Modal } from '../components/modal.js';
 
 
