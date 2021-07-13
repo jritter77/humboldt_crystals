@@ -1,21 +1,5 @@
+import {sendEmail} from '../models/sendEmail.js';
 
-import {post} from '../models/webRequest.js';
-
-async function sendEmail(sub, msg, from) {
-
-    try {
-        await post('./server/sendEmail.php', JSON.stringify({
-            sub: sub,
-            msg: msg,
-            from: from
-        }));
-    }
-    catch (err) {
-        console.log(err);
-    }
-    
-
-}
 
 
 async function sendMessage(e) {
@@ -46,7 +30,16 @@ function Contact() {
     
     app.innerHTML = `
     <div class="row">
-        <div class="col">
+        <div class="col-md text-center rounded" style="margin:5vw;border: 2px solid purple; padding: 2vw;">
+            <ul class='list-group text-left'>
+                <li class='list-group-item'><b>Phone:</b> (707)-502-4546</li>
+                <li class='list-group-item'><b>Email:</b> humboldtcrystals@gmail.com</li>
+                <li class='list-group-item'><b>Facebook:</b> <a href="https://www.facebook.com/HumboldtCrystals/">facebook.com/HumboldtCrystals/</a></li>
+            </ul>
+            <img src='./images/dragonfly.jpg' style='width:128px;margin-top:5vw;'>
+        </div>
+
+        <div class="col-md rounded" style="margin:5vw;border: 2px solid purple; padding: 2vw;">
         
         <form id='sendMessage' class='needs-validation' novalidate>
             <div class='form-group'>
