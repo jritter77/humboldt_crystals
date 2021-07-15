@@ -9,6 +9,6 @@ $headers = 'From: ' . $req->from;
 
 $result = mail($to, $sub, $msg, $headers);
 
-echo $result;
+echo json_encode($result);
 
 ?>

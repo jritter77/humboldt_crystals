@@ -31,6 +31,7 @@ function Contact() {
     app.innerHTML = `
     <div class="row">
         <div class="col-md text-center rounded" style="margin:5vw;border: 2px solid purple; padding: 2vw;">
+            <h3>Contact Info</h3>
             <ul class='list-group text-left'>
                 <li class='list-group-item'><b>Phone:</b> (707)-502-4546</li>
                 <li class='list-group-item'><b>Email:</b> humboldtcrystals@gmail.com</li>
@@ -41,6 +42,7 @@ function Contact() {
 
         <div class="col-md rounded" style="margin:5vw;border: 2px solid purple; padding: 2vw;">
         
+        <h3 class="text-center">Send a Message</h3>
         <form id='sendMessage' class='needs-validation' novalidate>
             <div class='form-group'>
                 <label for='subject'>Subject</label>

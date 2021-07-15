@@ -40,8 +40,8 @@ async function Admin() {
 
 const ContentTools = () => `
     <div 
-    class="col  border border-primary rounded" 
-    style="margin:5vw; padding-top:2vw;"
+    class="col rounded" 
+    style="margin:5vw; padding-top:2vw;border: 2px solid purple;"
     >
         <h2 class='text-center'>Content Tools</h2>
         <ul style='margin:2vw;'>
@@ -56,8 +56,8 @@ const ContentTools = () => `
 
 const SiteManagement = () => `
     <div 
-    class="col  border border-primary rounded" 
-    style="margin:5vw; padding-top:2vw;"
+    class="col rounded" 
+    style="margin:5vw; padding-top:2vw; border: 2px solid purple;"
     >
         <h2 class='text-center'>Site Management</h2>
         <ul style='margin:2vw;'>
@@ -72,8 +72,8 @@ const SiteManagement = () => `
 
 const SiteStatistics = () => `
     <div 
-    class="col  border border-primary rounded" 
-    style="margin:5vw; padding-top:2vw;"
+    class="col rounded" 
+    style="margin:5vw; padding-top:2vw; border: 2px solid purple;"
     >
         <h2 class='text-center'>Site Statistics</h2>
         <div class='row'>
