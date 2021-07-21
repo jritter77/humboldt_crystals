@@ -1,4 +1,4 @@
-function Article({id, title, img, description, price, tags}) {
+function Article({id, title, img, description, price, tags}, index) {
 
     // Delete button component
     const deleteButton = () => {
@@ -7,6 +7,20 @@ function Article({id, title, img, description, price, tags}) {
             return `
             <div class='col'>
                 <button class='btn btn-danger deleteArticleButton' value='${id}'>X</button>
+            </div>
+            `
+        }
+        
+        return '';
+    }
+
+
+    const editButton = () => {
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            return `
+            <div class='col'>
+                <button class='btn btn-primary editArticleButton' data-toggle="modal" data-target="#exampleModal" value='${index}'>Edit</button>
             </div>
             `
         }
@@ -27,6 +41,7 @@ function Article({id, title, img, description, price, tags}) {
             <div class='col'>
                 <p><b>Price: </b>$${price}</p>
             </div>
+            ${editButton()}
             ${deleteButton()}
         </div>
     </div>

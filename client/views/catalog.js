@@ -1,6 +1,6 @@
 import { Article } from "../components/article.js";
 import { Modal } from "../components/modal.js";
-import { addRecord, deleteRecord, getAllRecords } from "../models/articles.js";
+import { addRecord, deleteRecord, editRecord, getAllRecords } from "../models/articles.js";
 import { verifySession } from "../models/sessions.js";
 
 
@@ -17,6 +17,34 @@ let activePriceRange;
 
 /** PAGE FUNCTIONS */
 
+
+
+
+
+function openNewArticle() {
+    $('#newArticleTitle').val('');
+    $('#newArticleDesc').val('');
+    $('#newArticlePrice').val('');
+    $('#newArticleTags').val('');
+
+    $('#modalSubmit').off('click');
+    $('#modalSubmit').click(addArticle);
+}
+
+
+function openEditArticle(index) {
+    const a = articles[index]
+    $('#modalSubmit').val(a.id);
+    $('#newArticleTitle').val(a.title);
+    $('#newArticleDesc').val(a.description);
+    $('#newArticlePrice').val(a.price);
+    $('#newArticleTags').val(a.tags);
+
+
+    $('#modalSubmit').off('click');
+    $('#modalSubmit').click(editArticle);
+}
+
 // Add Article function adds new article to database
 async function addArticle(e) {
     e.preventDefault();
@@ -29,6 +57,30 @@ async function addArticle(e) {
 
     if (title && desc && price && img) {
         await addRecord(title, desc, price, img, tags);
+        refreshArticles();
+        $('#exampleModal').modal('hide');
+        $('#app').prepend(`<div class='alert alert-success' role='alert'>New Article created successfully!</div>`)
+    }
+    else {
+        $('#newArticleModal').addClass('was-validated');
+        $('#img_upload').addClass('was-validated');
+    }
+}
+
+
+// Edit Article function edits article in database
+async function editArticle(e) {
+    e.preventDefault();
+
+    const id = this.value;
+    const title = $('#newArticleTitle').val();
+    const desc = $('#newArticleDesc').val();
+    const price = $('#newArticlePrice').val();
+    const img = new FormData(document.getElementById('img_upload'));
+    const tags = $('#newArticleTags').val();
+
+    if (title && desc && price && img) {
+        await editRecord(id, title, desc, price, img, tags);
         refreshArticles();
         $('#exampleModal').modal('hide');
         $('#app').prepend(`<div class='alert alert-success' role='alert'>New Article created successfully!</div>`)
@@ -164,7 +216,7 @@ async function Catalog() {
         ${catalogCtl()}
         <div class='col'>
             <div id='articles' class='row d-flex justify-content-center'>
-                ${articles.map(Article).join('')}
+                ${articles.map((e, i) => Article(e, i)).join('')}
             </div>
         </div>
         
@@ -185,7 +237,12 @@ async function Catalog() {
     })
 
 
-    $('#new_article_btn').click(clearModal);
+    $('#new_article_btn').click(openNewArticle);
+    
+    // Set onclick event of all editArticleButtons
+    $('.editArticleButton').each((i, e) => {
+        e.onclick = () => openEditArticle(e.value);
+    });
 }
 
 

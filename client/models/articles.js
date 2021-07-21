@@ -32,6 +32,26 @@ async function addRecord(title, desc, price, img, tags) {
 }
 
 
+
+async function editRecord(id, title, desc, imgPath, tags) {
+
+    try {
+        await post('./server/events/editRecord.php', JSON.stringify({
+            id: id,
+            title: title,
+            description: desc,
+            price: price,
+            img: imgPath,
+            tags: tags
+        }));
+    }
+    catch (err) {
+        console.log(err);
+    }
+    
+
+}
+
 async function deleteRecord(id) {
     try {
         await post('./server/records/deleteRecord.php', JSON.stringify({
@@ -47,4 +67,4 @@ async function deleteRecord(id) {
 
 
 
-export {getAllRecords, addRecord, deleteRecord}
+export {getAllRecords, addRecord, editRecord, deleteRecord}
