@@ -49,8 +49,8 @@ async function deleteArticle(id) {
 
 // Checks for the current searchTerm in the title and description of given article
 function checkSearchTerm(a) {
-    const title = a.title.search(searchTerm) > -1;
-    const desc = a.description.search(searchTerm) > -1;
+    const title = a.title.toLowerCase().search(searchTerm.toLowerCase()) > -1;
+    const desc = a.description.toLowerCase().search(searchTerm.toLowerCase()) > -1;
     if (title || desc) {
         return true;
     }
@@ -63,7 +63,7 @@ function getActiveFilters() {
     activeFilters = [];
     $('.articleFilter').each((i, e) => {
         if (e.checked) {
-            activeFilters.push(e.value);
+            activeFilters.push(e.value.toLowerCase());
         }
     });
 }
@@ -89,15 +89,14 @@ function getPriceRange() {
 
 // Filter function used to filter articles when searching
 function filterArticles(a) {
-    const tags = (a.tags) ? a.tags : "";
+    const tags = (a.tags) ? a.tags.toLowerCase() : "";
     const min = parseInt(activePriceRange[0]);
     const max = (activePriceRange[1] === Infinity) ? Infinity : parseInt(activePriceRange[1]);
     const price = parseInt(a.price);
 
-
-    if (price >= min && price < max) {
-        if (activeFilters.length > 0) {
-            for (let af of activeFilters) {
+    if (price >= min && price < max) {                  // Filter by price
+        if (activeFilters.length > 0) {                 // Check for active filters
+            for (let af of activeFilters) {             
                 if (tags.indexOf(af) > -1) {
                     return checkSearchTerm(a);
                 }
@@ -201,10 +200,10 @@ async function Catalog() {
 // Catalog Control Component
 const catalogCtl = () => `
     <div class='col-xs-1' style='margin-top:5vw;margin-right:3vw;'>
+        <h3 class='text-center rounded' style='background-color:purple;color:white;'>Filters</h3>
         <div class='rounded' style="border: 2px solid purple">
             <div class='row'>
-                <div class='col'>${filters()}</div>
-                <div class='col'>${priceRange()}</div>
+                ${filters()}
             </div>
             <div class='row'>
                 <div class='col'>${search()}</div>
@@ -228,11 +227,13 @@ const search = () => `
 
 // Filter Component
 const filters = () => {
-    const terms = ['jewelry', 'animal', 'nature'];
+    const types = ['Car Charms', 'Angels', 'Single Strand Suncatcher', 'Double Strand Suncatcher',
+                    'Triple Strand Suncatcher', 'Multiple Strand Suncatcher', 'Earrings'];
 
+    const themes = ['Animals', 'Nature', 'Sports', 'Redwood'];
 
-    let html = `<p>Filters:</p>`;
-    for (let t of terms) {
+    let html = `<div class='col'><p><b>Types:</b></p>`;
+    for (let t of types) {
         html += `
             <div class="form-check">
                 <input class="form-check-input articleFilter" type="checkbox" value="${t}" id="filter_${t}">
@@ -242,7 +243,20 @@ const filters = () => {
             </div>`
     }
 
-    return `<div style='margin:1vw'>${html}</div>`;
+    html += `</div><div class='col'><p><b>Themes:</b></p>`;
+    for (let t of themes) {
+        html += `
+            <div class="form-check">
+                <input class="form-check-input articleFilter" type="checkbox" value="${t}" id="filter_${t}">
+                <label class="form-check-label" for="filter_${t}">
+                    ${t}
+                </label>
+            </div>`
+    }
+
+    html += `${priceRange()}</div>`;
+
+    return `<div class='row' style='margin:1vw'>${html}</div>`;
 
 }
 
@@ -252,7 +266,7 @@ const priceRange = () => {
     const ranges = ['any', '0-50', '50-100', '100-*'];
 
 
-    let html = `<p>Price Range:</p>`;
+    let html = `<p style='margin-top:2vw'><b>Price Range:</b></p>`;
     for (let r of ranges) {
         html += `
             <div class="form-check">
@@ -263,7 +277,7 @@ const priceRange = () => {
             </div>`
     }
 
-    return `<div style='margin:1vw'>${html}</div>`;
+    return html;
 }
 
 

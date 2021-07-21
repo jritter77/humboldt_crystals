@@ -17,15 +17,15 @@ function Article({id, title, img, description, price, tags}) {
 
     // Return the HTML of the Article component
     return (`
-    <div style="margin:2rem;" class='col-sm-6 col-md-3'>
+    <div style="margin-top:5vw;" class='col-sm-6 col-md-4'>
         <h4>${title}</h4>
-        <a href="#details-${id}"><img style="min-width:200px;min-height:250px;width:20vw;height:20vw;" class='img-thumbnail' src=${img} alt='img not found...'/><a>
+        <a href="#details-${id}"><img style="min-width:200px;min-height:200px;width:20vw;height:20vw;" class='img-thumbnail' src=${img} alt='img not found...'/><a>
         <p>${description}</p>
         <p><b>Number:</b> ${id}</p>
         <p><b>Tags:</b> ${(tags) ? (tags) : ""}</p>
         <div class='row'>
             <div class='col'>
-                <p><b>Price:</b>$${price}</p>
+                <p><b>Price: </b>$${price}</p>
             </div>
             ${deleteButton()}
         </div>
