@@ -17,7 +17,7 @@ return `<nav class="navbar navbar-dark" id="nav" style="background: rgb(87,14,14
             ${admin}
             <div class='col'><b><a style='color:white;' href="#catalog">Catalog</a></b></div>
             <div class='col'><b><a style='color:white;' href="#about">About</a></b></div>
-            <div class='col'><b><a style='color:white;' href="#contact">Contact</a></b></div>
+            <div class='col'><b><a style='color:white;' href="#ordering">Ordering</a></b></div>
         </div>
     </div>
 </nav>`;

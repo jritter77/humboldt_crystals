@@ -1,7 +1,7 @@
 
 import {Home} from "./views/home.js";
 import {About} from "./views/about.js";
-import {Contact} from "./views/contact.js";
+import {Ordering} from "./views/Ordering.js";
 import {Details} from "./views/details.js";
 import {Catalog} from "./views/catalog.js";
 import {Admin} from "./views/admin.js";
@@ -14,7 +14,7 @@ $('#header').html(NavBar());
 const pages = {
     home: Home,
     about: About,
-    contact: Contact,
+    ordering: Ordering,
     details: Details,
     catalog: Catalog,
     admin: Admin,

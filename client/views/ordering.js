@@ -25,19 +25,23 @@ async function sendMessage(e) {
 
 
 
-function Contact() {
+function Ordering() {
     const app = document.getElementById('app');
     
     app.innerHTML = `
     <div class="row">
         <div class="col-md text-center rounded" style="margin:5vw;border: 2px solid purple; padding: 2vw;">
-            <h3>Contact Info</h3>
-            <ul class='list-group text-left'>
-                <li class='list-group-item'><b>Phone:</b> (707)-502-4546</li>
-                <li class='list-group-item'><b>Email:</b> humboldtcrystals@gmail.com</li>
-                <li class='list-group-item'><b>Facebook:</b> <a href="https://www.facebook.com/HumboldtCrystals/">facebook.com/HumboldtCrystals/</a></li>
-            </ul>
-            <img src='./images/dragonfly.jpg' style='width:128px;margin-top:5vw;'>
+            <h3>Ordering Instructions</h3>
+            <p>Please navigate to the desired item and submit 
+                a request form from the details page of the item.
+                Shortly after submitting the request form you will recieve a
+                Paypal invoice for the desired item. Once payment has been confirmed
+                your item will be shipped to your address. (Currently not shipping outside of the 
+                Continental United States.)</p>
+            <h3>Special Orders</h3>
+            <p>I take speial orders. Want a different color, different shaped crystal, or a different
+                style? No problem, special orders are welcomed! Please send me a message with the Item's title,
+                number, and desired modifactions.</p>
         </div>
 
         <div class="col-md rounded" style="margin:5vw;border: 2px solid purple; padding: 2vw;">
@@ -77,4 +81,4 @@ function Contact() {
     $('#sendMessage').on('submit', sendMessage);
 }
 
-export {Contact}
+export {Ordering}
