@@ -1,5 +1,6 @@
 import {get, post} from "../models/webRequest.js";
 
+let article;
 
 async function Details() {
     const app = document.getElementById('app');
@@ -7,7 +8,7 @@ async function Details() {
     const loc = location.hash.substr(1);
     const articleId = loc.split("-")[1];
 
-    const article = JSON.parse(await post('./server/records/getRecord.php', JSON.stringify({id: articleId})))[0];
+    article = JSON.parse(await post('./server/records/getRecord.php', JSON.stringify({id: articleId})))[0];
 
     app.innerHTML = `
     <div class="row" >
@@ -43,10 +44,16 @@ async function Details() {
 
 const ImageSelector = (articleId) => {
 
-    const imgList = ['butterfly.jpg', 'elephant.jpg', 'sakura.jpg'];
+    let imgList = [article.img];
+    
+    if (article.add) {
+        imgList = imgList.concat(article.add.split(' '));
+    }
+    
+
 
     function getThumbnail(img) {
-        return `<img class='img-thumbnail' src='./images/${img}' style='height:15vh;width:15vh;'>`
+        return `<img class='img-thumbnail' src='${img}' style='height:15vh;width:15vh;'>`
     }
 
     return `
@@ -55,7 +62,7 @@ const ImageSelector = (articleId) => {
                 ${imgList.map(getThumbnail).join('')}
             </div>
             <div class='col-10'>
-                <img id='currentImage' src='./images/butterfly.jpg' style='height:80vh'>
+                <img id='currentImage' src='${imgList[0]}' style='height:80vh'>
             </div>
         </div>
     `
