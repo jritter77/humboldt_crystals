@@ -1,6 +1,7 @@
 import { Article } from "../components/article.js";
 import { Modal } from "../components/modal.js";
 import { addRecord, deleteRecord, editRecord, getAllRecords } from "../models/articles.js";
+import { uploadImg } from "../models/webRequest.js";
 import { verifySession } from "../models/sessions.js";
 
 
@@ -44,6 +45,22 @@ function openEditArticle(index) {
     $('#modalSubmit').off('click');
     $('#modalSubmit').click(editArticle);
 }
+
+
+
+async function handleUpload() {
+    if (document.getElementById('fileToUpload').files.length > 0) {
+        const img = new FormData(document.getElementById('img_upload'));
+        $('#uploadResult').html('uploading...');
+        const result = await uploadImg(img);
+        $('#uploadResult').html(result); 
+    }
+    else {
+        $('#uploadResult').html('');
+    }
+}
+
+
 
 // Add Article function adds new article to database
 async function addArticle(e) {
@@ -228,6 +245,8 @@ async function Catalog() {
     // create Modal for newArticle
     Modal('New Article', newArticleModal, addArticle);
 
+    $('#fileToUpload').on('change', handleUpload);
+
     // Set onSubmit of search form
     $('#search').on('submit', handleSearch);
 
@@ -382,8 +401,9 @@ const newArticleModal = `
             </div>
         </form>
         <form id='img_upload' class='needs-validation' novalidate>
-            Select image to upload:
+            Select Cover Image:
             <input type='file' name='fileToUpload' id='fileToUpload' required>
+            <div id='uploadResult'></div>
             <div class='invalid-feedback'>
                 Please select an image.
             </div>

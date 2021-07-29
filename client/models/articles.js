@@ -15,12 +15,11 @@ async function getAllRecords() {
 async function addRecord(title, desc, price, img, tags) {
 
     try {
-        const imgPath = './images/' + await uploadImg(img);
         await post('./server/records/addRecord.php', JSON.stringify({
             title: title,
             description: desc,
             price: price,
-            img: imgPath,
+            img: './images/' + img.get('fileToUpload').name,
             tags: tags
         }));
     }

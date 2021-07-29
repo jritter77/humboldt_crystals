@@ -28,19 +28,14 @@ function post(endpoint, params) {
 
 
 function uploadImg(formData) {
-    $.ajax({
+    return $.ajax({
         url: './server/upload.php',
         type: 'POST',
         data: formData,
-        success: function (data) {
-            alert(data)
-        },
         cache: false,
         contentType: false,
         processData: false
     });
-
-    return formData.get('fileToUpload').name;
 }
 
 
