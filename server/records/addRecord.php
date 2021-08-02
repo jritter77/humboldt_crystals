@@ -9,6 +9,7 @@ $stmt = $db->prepare("INSERT INTO catalog (
         description,
         price,
         img,
+        opt,
         tags
     )
     VALUES (
@@ -16,10 +17,12 @@ $stmt = $db->prepare("INSERT INTO catalog (
         :description,
         :price,
         :img,
+        :opt,
         :tags
     )");
 
 $req = json_decode($_POST['req']);
+
 
 // fill in parameters
 $stmt->bindValue(':title', $req->title);
@@ -27,9 +30,12 @@ $stmt->bindValue(':description', $req->description);
 $stmt->bindValue(':price', $req->price);
 $stmt->bindValue(':img', $req->img);
 $stmt->bindValue(':tags', $req->tags);
+$stmt->bindValue(':opt', $req->opt);
+
 
 
 // Execute the sqlite3 command
 $result = $stmt->execute();
 
+echo $result;
 ?>

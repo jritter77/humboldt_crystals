@@ -39,5 +39,17 @@ function uploadImg(formData) {
 }
 
 
+function uploadMulti(formData) {
+    return $.ajax({
+        url: './server/uploadMultiple.php',
+        type: 'POST',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+    })
+}
 
-export {get, post, uploadImg}
+
+
+export {get, post, uploadImg, uploadMulti}

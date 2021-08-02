@@ -12,16 +12,19 @@ async function getAllRecords() {
 
 
 
-async function addRecord(title, desc, price, img, tags) {
+async function addRecord(title, desc, price, img, tags, opt) {
 
     try {
-        await post('./server/records/addRecord.php', JSON.stringify({
+        const result = await post('./server/records/addRecord.php', JSON.stringify({
             title: title,
             description: desc,
             price: price,
-            img: './images/' + img.get('fileToUpload').name,
+            img: img,
+            opt: opt,
             tags: tags
         }));
+
+        console.log(result);
     }
     catch (err) {
         console.log(err);

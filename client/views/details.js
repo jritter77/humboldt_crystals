@@ -46,8 +46,8 @@ const ImageSelector = (articleId) => {
 
     let imgList = [article.img];
     
-    if (article.add) {
-        imgList = imgList.concat(article.add.split(' '));
+    if (article.opt) {
+        imgList = imgList.concat(article.opt.split(' '));
     }
     
 
