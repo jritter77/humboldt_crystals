@@ -1,7 +1,7 @@
 
 function NavBar() {
 
-const admin = (sessionStorage.getItem('token')) ? `<div class='col'><a style='color:white;' href="#admin">Admin</a></div>` : '';
+const admin = (sessionStorage.getItem('token')) ? `<div class='col'><b><a style='color:white;' href="#admin">Admin</a></b></div>` : '';
 
 return `<nav class="navbar navbar-dark" id="nav" style="background: rgb(87,14,140);background: linear-gradient(45deg, rgba(87,14,140,1) 0%, rgba(255,0,220,1) 100%);">
     <div class="container-fluid">

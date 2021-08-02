@@ -26,7 +26,7 @@ async function getMonthEvents(month, year) {
 
 
 
-async function addEvent(title, month, day, year, desc) {
+async function addEvent(title, month, day, year, desc, images) {
 
     try {
         await post('./server/events/addEvent.php', JSON.stringify({
@@ -34,7 +34,8 @@ async function addEvent(title, month, day, year, desc) {
             month: month,
             day: day,
             year: year,
-            description: desc
+            description: desc,
+            images: images
         }));
     }
     catch (err) {

@@ -1,7 +1,7 @@
 import { Article } from "../components/article.js";
 import { Modal } from "../components/modal.js";
 import { addRecord, deleteRecord, editRecord, getAllRecords } from "../models/articles.js";
-import { uploadImg, uploadMulti } from "../models/webRequest.js";
+import { uploadImg } from "../models/webRequest.js";
 import { verifySession } from "../models/sessions.js";
 
 
@@ -52,8 +52,9 @@ async function handleUpload() {
     if (document.getElementById('fileToUpload').files.length > 0) {
         const img = new FormData(document.getElementById('img_upload'));
         $('#uploadResult').html('uploading...');
-        const result = await uploadMulti(img);
-        $('#uploadResult').html(result); 
+        const result = await uploadImg(img);
+        $('#uploadResult').html(result);
+        $('#uploadedImages').append(uploadedImage(img.get('fileToUpload').name)); 
     }
     else {
         $('#uploadResult').html('');
@@ -66,25 +67,21 @@ async function handleUpload() {
 async function addArticle(e) {
     e.preventDefault();
 
-    let files = [];
-    for (let file of document.getElementById('fileToUpload').files) {
-        files.push('./images/' + file.name);
-    }
+    let images = [];
+    $('.uploadedImage').each((i, image) => {
+        images.push('./images/' + image.innerHTML);
+    })
 
-    console.log(files);
 
     const title = $('#newArticleTitle').val();
     const desc = $('#newArticleDesc').val();
     const price = $('#newArticlePrice').val();
-    const img = files[0];
+    const img = images[0];
     const tags = $('#newArticleTags').val();
-    const add = files.slice(1).join(' ');
-
-    console.log(add);
-
+    const opt = images.slice(1).join(' ');
 
     if (title && desc && price && img) {
-        await addRecord(title, desc, price, img, tags, add);
+        await addRecord(title, desc, price, img, tags, opt);
         refreshArticles();
         $('#exampleModal').modal('hide');
         $('#app').prepend(`<div class='alert alert-success' role='alert'>New Article created successfully!</div>`)
@@ -217,6 +214,11 @@ async function refreshArticles() {
 }
 
 
+
+function clearModal() {
+    document.getElementById('newArticleModal').reset();
+    document.getElementById('img_upload').reset();
+}
 
 
 /** MAIN PAGE **/
@@ -376,6 +378,13 @@ const adminTools = () => {
 }
 
 
+const uploadedImage = (result) => {
+
+    return `
+        <p class='uploadedImage'>${result}</p>    
+    `
+}
+
 
 
 // Body for New Article Modal component
@@ -409,11 +418,10 @@ const newArticleModal = `
         </form>
         <form id='img_upload' class='needs-validation' novalidate>
             Select Cover Image:
-            <input type='file' name='fileToUpload[]' id='fileToUpload' required multiple>
+            <input type='file' name='fileToUpload' id='fileToUpload' >
             <div id='uploadResult'></div>
-            <div class='invalid-feedback'>
-                Please select an image.
-            </div>
+        </form> 
+        <div id=uploadedImages></div> 
     `;
 
 

@@ -37,5 +37,4 @@ $stmt->bindValue(':opt', $req->opt);
 // Execute the sqlite3 command
 $result = $stmt->execute();
 
-echo $result;
 ?>

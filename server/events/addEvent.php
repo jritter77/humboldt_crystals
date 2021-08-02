@@ -9,14 +9,16 @@ $stmt = $db->prepare("INSERT INTO events (
         month,
         day,
         year,
-        description
+        description,
+        images
     )
     VALUES (
         :title,
         :month,
         :day,
         :year,
-        :description
+        :description,
+        :images
     )");
 
 $req = json_decode($_POST['req']);
@@ -27,6 +29,7 @@ $stmt->bindValue(':month', $req->month);
 $stmt->bindValue(':day', $req->day);
 $stmt->bindValue(':year', $req->year);
 $stmt->bindValue(':description', $req->description);
+$stmt->bindValue(':images', $req->images);
 
 
 
