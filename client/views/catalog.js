@@ -35,12 +35,24 @@ function openNewArticle() {
 
 
 function openEditArticle(index) {
-    const a = articles[index]
+    const a = articles[index];
+    const opt = (a.opt) ? (a.opt).split(' ') : [];
     $('#modalSubmit').val(a.id);
     $('#newArticleTitle').val(a.title);
     $('#newArticleDesc').val(a.description);
     $('#newArticlePrice').val(a.price);
     $('#newArticleTags').val(a.tags);
+
+    // Clear any previous uploaded images from modal
+    $('#uploadedImages').html('');
+
+    // Show main image
+    $(uploadedImage(a.img.split('/').pop())).appendTo('#uploadedImages').click(removeImage);
+    
+    // Show all optional images
+    for (let image of opt) {
+        $(uploadedImage(image.split('/').pop())).appendTo('#uploadedImages').click(removeImage);
+    }
 
 
     $('#modalSubmit').off('click');
@@ -73,7 +85,6 @@ async function addArticle(e) {
         images.push('./images/' + image.innerText);
     })
 
-    console.log(images);
 
     const title = $('#newArticleTitle').val();
     const desc = $('#newArticleDesc').val();
@@ -99,15 +110,22 @@ async function addArticle(e) {
 async function editArticle(e) {
     e.preventDefault();
 
+
+    let images = [];
+    $('.uploadedImage').each((i, image) => {
+        images.push('./images/' + image.innerText);
+    })
+
     const id = this.value;
     const title = $('#newArticleTitle').val();
     const desc = $('#newArticleDesc').val();
     const price = $('#newArticlePrice').val();
-    const img = new FormData(document.getElementById('img_upload'));
+    const img = images[0];
     const tags = $('#newArticleTags').val();
+    const opt = images.slice(1).join(' ');
 
     if (title && desc && price && img) {
-        await editRecord(id, title, desc, price, img, tags);
+        await editRecord(id, title, desc, price, img, tags, opt);
         refreshArticles();
         $('#exampleModal').modal('hide');
         $('#app').prepend(`<div class='alert alert-success' role='alert'>New Article created successfully!</div>`)

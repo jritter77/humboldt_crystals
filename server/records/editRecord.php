@@ -10,6 +10,7 @@ $stmt = $db->prepare("UPDATE catalog
         description = :description,
         price = :price,
         img = :img,
+        opt = :opt,
         tags = :tags
     WHERE 
         id = :id
@@ -23,6 +24,7 @@ $stmt->bindValue(':title', $req->title);
 $stmt->bindValue(':description', $req->description);
 $stmt->bindValue(':price', $req->price);
 $stmt->bindValue(':img', $req->img);
+$stmt->bindValue(':opt', $req->opt);
 $stmt->bindValue(':tags', $req->tags);
 
 

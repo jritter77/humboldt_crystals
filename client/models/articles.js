@@ -35,15 +35,16 @@ async function addRecord(title, desc, price, img, tags, opt) {
 
 
 
-async function editRecord(id, title, desc, imgPath, tags) {
+async function editRecord(id, title, desc, price, img, tags, opt) {
 
     try {
-        await post('./server/events/editRecord.php', JSON.stringify({
+        await post('./server/records/editRecord.php', JSON.stringify({
             id: id,
             title: title,
             description: desc,
             price: price,
-            img: imgPath,
+            img: img,
+            opt: opt,
             tags: tags
         }));
     }
