@@ -46,13 +46,14 @@ async function addEvent(title, month, day, year, desc, images) {
 }
 
 
-async function editEvent(id, title, desc) {
+async function editEvent(id, title, desc, images) {
 
     try {
         await post('./server/events/editEvent.php', JSON.stringify({
             id: id,
             title: title,
-            description: desc
+            description: desc,
+            images: images
         }));
     }
     catch (err) {
