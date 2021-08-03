@@ -17,6 +17,10 @@ function displayEvent(el) {
             $('.modal-title').html(e.title);
             $('.modal-body').html(`<p>${e.description}</p>`)
             $('#exampleModal').modal('toggle');
+            
+            for (let image of e.images.split(' ')) {
+                $('.modal-body').append(`<img src=${image} style='width:50%;'>`);
+            }
         }
         else {
             alert('No events for selected day.');
