@@ -27,6 +27,7 @@ function openNewArticle() {
     $('#newArticleDesc').val('');
     $('#newArticlePrice').val('');
     $('#newArticleTags').val('');
+    $('#uploadedImages').html('');
 
     $('#modalSubmit').off('click');
     $('#modalSubmit').click(addArticle);
@@ -54,7 +55,7 @@ async function handleUpload() {
         $('#uploadResult').html('uploading...');
         const result = await uploadImg(img);
         $('#uploadResult').html(result);
-        $('#uploadedImages').append(uploadedImage(img.get('fileToUpload').name)); 
+        $(uploadedImage(img.get('fileToUpload').name)).appendTo('#uploadedImages').click(removeImage); 
     }
     else {
         $('#uploadResult').html('');
@@ -69,9 +70,10 @@ async function addArticle(e) {
 
     let images = [];
     $('.uploadedImage').each((i, image) => {
-        images.push('./images/' + image.innerHTML);
+        images.push('./images/' + image.innerText);
     })
 
+    console.log(images);
 
     const title = $('#newArticleTitle').val();
     const desc = $('#newArticleDesc').val();
@@ -215,9 +217,10 @@ async function refreshArticles() {
 
 
 
-function clearModal() {
-    document.getElementById('newArticleModal').reset();
-    document.getElementById('img_upload').reset();
+function removeImage(e) {
+    console.log(e.target.value)
+    const div = document.getElementById(e.target.value);
+    div.remove();
 }
 
 
@@ -270,6 +273,8 @@ async function Catalog() {
     $('.editArticleButton').each((i, e) => {
         e.onclick = () => openEditArticle(e.value);
     });
+
+    
 }
 
 
@@ -378,10 +383,13 @@ const adminTools = () => {
 }
 
 
-const uploadedImage = (result) => {
+const uploadedImage = (filename) => {
 
     return `
-        <p class='uploadedImage'>${result}</p>    
+        <div class='row' id='${filename}'>
+            <button class='btn btn-danger removeImage col-1' value='${filename}'>X</button>   
+            <p class='uploadedImage col'>${filename}</p>
+        </div>
     `
 }
 
