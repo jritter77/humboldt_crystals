@@ -20,6 +20,23 @@ let activePriceRange;
 
 
 
+window.addEventListener("scroll", scrollFunction);
+
+function scrollFunction() {
+    const topButton = document.getElementById('topButton');
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        topButton.style.display = "inline";
+    }
+    else {
+        topButton.style.display = "none";
+    }
+}
+
+function goToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
 
 
 function openNewArticle() {
@@ -267,9 +284,12 @@ async function Catalog() {
         </div>
         
     </div>
+    <div class='text-right fixed-bottom'>
+        <button class='btn btn-secondary' id='topButton' style='margin:3vw;display:none;'>Top</button>
+    </div>
     `;
 
-
+    $('#topButton').click(goToTop);
 
     // create Modal for newArticle
     Modal('New Article', newArticleModal, addArticle);
