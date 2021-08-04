@@ -334,57 +334,88 @@ const search = () => `
 
 // Filter Component
 const filters = () => {
-    const types = ['Car Charms', 'Angels', 'Single Strand Suncatcher', 'Double Strand Suncatcher',
-                    'Triple Strand Suncatcher', 'Multiple Strand Suncatcher', 'Earrings'];
 
-    const themes = ['Animals', 'Nature', 'Sports', 'Redwood'];
-
-    let html = `<div class='col'><p><b>Types:</b></p>`;
-    for (let t of types) {
-        html += `
-            <div class="form-check">
-                <input class="form-check-input articleFilter" type="checkbox" value="${t}" id="filter_${t}">
-                <label class="form-check-label" for="filter_${t}">
-                    ${t}
-                </label>
-            </div>`
-    }
-
-    html += `</div><div class='col'><p><b>Themes:</b></p>`;
-    for (let t of themes) {
-        html += `
-            <div class="form-check">
-                <input class="form-check-input articleFilter" type="checkbox" value="${t}" id="filter_${t}">
-                <label class="form-check-label" for="filter_${t}">
-                    ${t}
-                </label>
-            </div>`
-    }
-
-    html += `${priceRange()}</div>`;
-
-    return `<div class='row' style='margin:1vw'>${html}</div>`;
+    return `
+        <div class='col' style='margin:1vw;'>
+        ${themesFilter()}
+        ${priceRange()}
+        </div>
+        <div class='col' style='margin:1vw;'>
+        ${typesFilter()}
+        </div>
+    `;
 
 }
 
+
+const checkBox = label => `
+    <div class="form-check">
+        <input class="form-check-input articleFilter" type="checkbox" value="${label}" id="filter_${label}">
+        <label class="form-check-label" for="filter_${label}">
+            ${label}
+        </label>
+    </div>`;
+
+
+
+const typesFilter = () => {
+    const types = ['Car Charms', 'Angels', 'Single Strand Suncatcher', 'Double Strand Suncatcher',
+                    'Triple Strand Suncatcher', 'Multiple Strand Suncatcher', 'Earrings'];
+
+    return `
+        <div>
+            <a data-toggle="collapse" href="#typeCollapse" role="button">
+                <b>Types:</b>
+            </a>
+            <div class="collapse" id="typeCollapse">
+            ${types.map(checkBox).join('')}
+            </div>
+        </div>
+    `
+    
+    
+}
+
+
+const themesFilter = () => {
+    const themes = ['Animals', 'Nature', 'Sports', 'Redwood'];
+
+    return `
+        <div>
+            <a data-toggle="collapse" href="#themeCollapse" role="button">
+                <b>Themes:</b>
+            </a>
+            <div class="collapse" id="themeCollapse">
+            ${themes.map(checkBox).join('')}
+            </div>
+        </div>
+    `
+}
 
 // Price Range component
 const priceRange = () => {
     const ranges = ['any', '0-50', '50-100', '100-*'];
 
+    const radioButton = (label) => `
+        <div class="form-check">
+            <input class="form-check-input articlePriceRange" name='price_range' type="radio" value="${label}" id="price_range_${label}" ${(label === 'any') ? 'checked' : ''}>
+            <label class="form-check-label" for="price_range_${label}">
+                ${label}
+            </label>
+        </div>
+    `
 
-    let html = `<p style='margin-top:2vw'><b>Price Range:</b></p>`;
-    for (let r of ranges) {
-        html += `
-            <div class="form-check">
-                <input class="form-check-input articlePriceRange" name='price_range' type="radio" value="${r}" id="price_range_${r}" ${(r === 'any') ? 'checked' : ''}>
-                <label class="form-check-label" for="price_range_${r}">
-                    ${r}
-                </label>
-            </div>`
-    }
+    return `
+        <div style='margin-top:1vw;'>
+            <a data-toggle="collapse" href="#priceCollapse" role="button">
+                <b>Price:</b>
+            </a>
+            <div class="collapse" id="priceCollapse">
+            ${ranges.map(radioButton).join('')}
+            </div>
+        </div>
+    `
 
-    return html;
 }
 
 
