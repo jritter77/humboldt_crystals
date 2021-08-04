@@ -35,6 +35,10 @@ function displayPost() {
     const p = posts[this.id];
     $('.modal-title').html(p.title);
     $('.modal-body').html(`<p>${p.description}</p>`);
+
+    for (let image of p.images.split(' ')) {
+        $('.modal-body').append(`<img src=${image} style='width:50%;'>`);
+    }
 }
 
 

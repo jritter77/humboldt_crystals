@@ -7,12 +7,14 @@ $db = new SQLite3('../../data/humboldtCrystals.db');
 $stmt = $db->prepare("INSERT INTO posts (
         date,
         title,
-        description
+        description,
+        images
     )
     VALUES (
         :date,
         :title,
-        :description
+        :description,
+        :images
     )");
 
 $req = json_decode($_POST['req']);
@@ -21,6 +23,7 @@ $req = json_decode($_POST['req']);
 $stmt->bindValue(':date', $req->date);
 $stmt->bindValue(':title', $req->title);
 $stmt->bindValue(':description', $req->description);
+$stmt->bindValue(':images', $req->images);
 
 
 

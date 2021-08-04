@@ -12,13 +12,14 @@ async function getAllPosts() {
 
 
 
-async function addNewsPost(date, title, desc) {
+async function addNewsPost(date, title, desc, images) {
 
     try {
         await post('./server/posts/addPost.php', JSON.stringify({
             date: date,
             title: title,
-            description: desc
+            description: desc,
+            images: images
         }));
     }
     catch (err) {
@@ -29,13 +30,14 @@ async function addNewsPost(date, title, desc) {
 }
 
 
-async function editNewsPost(id, title, desc) {
+async function editNewsPost(id, title, desc, images) {
 
     try {
         await post('./server/posts/editPost.php', JSON.stringify({
             id: id,
             title: title,
-            description: desc
+            description: desc,
+            images: images
         }));
     }
     catch (err) {

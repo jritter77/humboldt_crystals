@@ -2,6 +2,7 @@ import {getAllPosts, addNewsPost, deleteNewsPost, editNewsPost} from '../models/
 import { newsPost } from "../components/newsPost.js";
 import { Modal } from "../components/modal.js";
 import { verifySession } from "../models/sessions.js";
+import { uploadImg } from "../models/webRequest.js";
 
 let posts = [];
 
@@ -11,24 +12,66 @@ function openNewPost() {
     $('#newPostTitle').val('');
     $('#newPostDesc').val('');
 
+    $('#uploadedImages').html('');
+    $('#uploadResult').html('');
+
     $('#modalSubmit').off('click');
     $('#modalSubmit').click(newPost);
 }
 
 
 function openEditPost(index) {
-    const p = posts[index]
+    const p = posts[index];
+    const images = (p.images) ? (p.images).split(' ') : [];
     $('#modalSubmit').val(p.id);
     $('#newPostTitle').val(p.title);
     $('#newPostDesc').val(p.description);
+
+    // Clear any previous uploaded images from modal
+    $('#uploadedImages').html('');
+    $('#uploadResult').html('');
+            
+    // Show all optional images
+    for (let image of images) {
+        $(uploadedImage(image.split('/').pop())).appendTo('#uploadedImages').click(removeImage);
+    }
 
     $('#modalSubmit').off('click');
     $('#modalSubmit').click(editPost);
 }
 
 
+
+
+async function handleUpload() {
+    if (document.getElementById('fileToUpload').files.length > 0) {
+        const img = new FormData(document.getElementById('img_upload'));
+        $('#uploadResult').html('uploading...');
+        const result = await uploadImg(img);
+        $('#uploadResult').html(result);
+        $(uploadedImage(img.get('fileToUpload').name)).appendTo('#uploadedImages').click(removeImage); 
+    }
+    else {
+        $('#uploadResult').html('');
+    }
+}
+
+
+function removeImage(e) {
+    console.log(e.target.value)
+    const div = document.getElementById(e.target.value);
+    div.remove();
+}
+
+
+
 async function newPost(e) {
     e.preventDefault();
+
+    let images = [];
+    $('.uploadedImage').each((i, image) => {
+        images.push('./images/' + image.innerText);
+    });
 
     const date = new Date();
 
@@ -42,7 +85,7 @@ async function newPost(e) {
     
 
     if (title && desc) {
-        await addNewsPost(curDate, title, desc);
+        await addNewsPost(curDate, title, desc, images.join(' '));
         refreshPosts();
         $('#exampleModal').modal('hide');
     }
@@ -59,13 +102,18 @@ async function newPost(e) {
 async function editPost(e) {
     e.preventDefault();
 
+    let images = [];
+    $('.uploadedImage').each((i, image) => {
+        images.push('./images/' + image.innerText);
+    })
+
     const id = this.value;
     const title = $('#newPostTitle').val();
     const desc = $('#newPostDesc').val();
     
 
     if (title && desc) {
-        await editNewsPost(id, title, desc);
+        await editNewsPost(id, title, desc, images.join(' '));
         refreshPosts();
         $('#exampleModal').modal('hide');
     }
@@ -83,6 +131,8 @@ async function deletePost(id) {
 
 async function refreshPosts() {
     posts = await getAllPosts();
+
+    posts.reverse();
 
     $('#posts').html(posts.map((e, i) => newsPost(e, i)).join(''));
 
@@ -108,6 +158,8 @@ async function ManagePosts() {
     // create Modal for newPost
     Modal('New Post', newPostModal, newPost);
 
+    $('#fileToUpload').on('change', handleUpload);
+
     // create post list
     await postList();
     
@@ -120,6 +172,8 @@ async function postList() {
     const app = $('#app');
 
     posts = await getAllPosts();
+
+    posts.reverse();
 
     app.append(`
     <hr>
@@ -160,7 +214,15 @@ async function postList() {
 }
 
 
+const uploadedImage = (filename) => {
 
+    return `
+        <div class='row' id='${filename}'>
+            <button class='btn btn-danger removeImage col-1' value='${filename}'>X</button>   
+            <p class='uploadedImage col'>${filename}</p>
+        </div>
+    `
+}
 
 
 const newPostModal = `
@@ -180,6 +242,12 @@ const newPostModal = `
             </div>
         </div>
     </form>
+    <form id='img_upload' class='needs-validation' novalidate>
+        Select Cover Image:
+        <input type='file' name='fileToUpload' id='fileToUpload' >
+        <div id='uploadResult'></div>
+    </form> 
+    <div id=uploadedImages></div> 
     `;
 
 export {ManagePosts};

@@ -7,7 +7,8 @@ $db = new SQLite3('../../data/humboldtCrystals.db');
 $stmt = $db->prepare("UPDATE posts 
     SET 
         title = :title,
-        description = :description
+        description = :description,
+        images = :images
     WHERE 
         id = :id
     ");
@@ -18,6 +19,7 @@ $req = json_decode($_POST['req']);
 $stmt->bindValue(':id', $req->id);
 $stmt->bindValue(':title', $req->title);
 $stmt->bindValue(':description', $req->description);
+$stmt->bindValue(':images', $req->images);
 
 
 
