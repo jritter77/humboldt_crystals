@@ -23,12 +23,14 @@ let activePriceRange;
 window.addEventListener("scroll", scrollFunction);
 
 function scrollFunction() {
-    const topButton = document.getElementById('topButton');
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        topButton.style.display = "inline";
-    }
-    else {
-        topButton.style.display = "none";
+    if (location.hash.substring(1) === 'catalog') {
+        const topButton = document.getElementById('topButton');
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            topButton.style.display = "inline";
+        }
+        else {
+            topButton.style.display = "none";
+        }
     }
 }
 
