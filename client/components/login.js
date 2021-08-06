@@ -13,9 +13,7 @@ async function handleSubmission(e) {
     if (await startSession(user, pass)) {
         Admin();
     } else {
-        if (!$('.alert').length) {
-            $('#login').prepend(`<div class='alert alert-danger' role='alert'>Invalid Credentials!</div>`);
-        }
+        alert('Invalid Credentials!');
     }
 
 }

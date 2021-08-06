@@ -116,7 +116,7 @@ async function addArticle(e) {
         await addRecord(title, desc, price, img, tags, opt);
         refreshArticles();
         $('#exampleModal').modal('hide');
-        $('#app').prepend(`<div class='alert alert-success' role='alert'>New Article created successfully!</div>`)
+        alert('New Item Created Successfully!');
     }
     else {
         $('#newArticleModal').addClass('was-validated');

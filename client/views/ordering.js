@@ -11,9 +11,7 @@ async function sendMessage(e) {
 
     if (sub && msg && email) {
         await sendEmail(sub, msg, email);
-        if ($('.alert').length < 1) {
-            $('#app').prepend(`<div class='alert alert-success' role='alert'>Message sent successfully!</div>`);
-        }
+        alert('Message Sent Successfully!');
 
         document.getElementById('sendMessage').reset();
     }
