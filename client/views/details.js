@@ -79,6 +79,8 @@ async function Details() {
 
     Modal('Purchase Request', purchaseRequestModal, handleRequest);
 
+    $('#modalSubmit').html('Send Request');
+
     $('.img-thumbnail').hover((e) => {
         $('#currentImage').attr('src', e.target.src);
     })
