@@ -66,7 +66,7 @@ async function Home() {
         class="col-md text-center" 
         style="margin-top:5vw; background-image: url(./images/background.png);background-attachment: fixed;background-repeat: no-repeat;background-size: cover; padding: 2vw; font-family: Brush Script MT;"
         >
-            <h1 style='color:white;font-size:3em;'>Beautifully Handcrafted Beaded Crystal Suncatchers</h1>
+            <h1 style='color:white;font-size:5vw;'>Beautifully Handcrafted Beaded Crystal Suncatchers</h1>
         </div>
     </div>
     <div class="row" id="calendarAndNews">
