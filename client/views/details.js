@@ -16,19 +16,17 @@ async function handleRequest(e) {
     const email = $('#email').val();
 
     const sub = `Purchase Request - ${article.title} #${article.id}`;
-    const msg = `
-        You have a recieved a purchase request for the following item:
+    const msg = `You have a recieved a purchase request for the following item:
 
-        Title: ${article.title}
-        Item Number: ${article.id}
-        Price: $${article.price}
+    Title: ${article.title}
+    Item Number: ${article.id}
+    Price: $${article.price}
 
-        Purchaser Info:
+    Purchaser Info:
 
-        Name: ${fn} ${ln}
-        Email: ${email}
-        Shipping Address: ${address} ${city}, ${state} ${zip}
-    `;    
+    Name: ${fn} ${ln}
+    Email: ${email}
+    Shipping Address: ${address} ${city}, ${state} ${zip}`;    
 
     if (sub && msg && email) {
         await sendEmail(sub, msg, email);
