@@ -97,7 +97,7 @@ const ImageSelector = (articleId) => {
 
 
     function getThumbnail(img) {
-        return `<img class='img-thumbnail' src='${img}' style='height:15vh;width:15vh;'>`
+        return `<img class='img-thumbnail' src='${img}' style='width:100%;'>`
     }
 
     return `
@@ -106,7 +106,7 @@ const ImageSelector = (articleId) => {
                 ${imgList.map(getThumbnail).join('')}
             </div>
             <div class='col-10'>
-                <img id='currentImage' src='${imgList[0]}' style='height:80vh'>
+                <img id='currentImage' src='${imgList[0]}' style='width:100%;'>
             </div>
         </div>
     `
