@@ -4,8 +4,8 @@ function About() {
     app.innerHTML = `
     <div class="row" style='margin-top:5vw;'>
         <div class="col-md">
-            <img class='img-fluid' src=./images/aboutPic1.jpg >
-            <img class='img-fluid' src=./images/aboutPic2.jpg style='margin-top:2vw;'>
+            <img src=./images/aboutPic1.jpg style='width:100%;'>
+            <img src=./images/aboutPic2.jpg style='width:100%;margin-top:2vw;'>
         </div>
         <div class="col-md-6">
             <p>Humboldt Crystals is located in Eureka along the Pacific coast nestled among the majestic redwood trees. My business evolved over time.</p> 
@@ -16,8 +16,8 @@ function About() {
             <p>I take great pride in each of my creations and get pleasure from seeing the joy they bring to others.</p>
         </div>
         <div class="col-md">
-            <img class='img-fluid' src=./images/aboutPic3.jpg >
-            <img class='img-fluid' src=./images/aboutPic4.jpg style='margin-top:2vw;'>
+            <img src=./images/aboutPic3.jpg style='width:100%;'>
+            <img src=./images/aboutPic4.jpg style='width:100%;margin-top:2vw;'>
         </div>
     </div>
     `;
