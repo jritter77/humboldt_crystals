@@ -32,6 +32,7 @@ function getPageFromURL() {
 function loadContent() {
     let fragmentId = getPageFromURL();
     pages[fragmentId]();
+    $('.modal').modal('hide');
 }
 
 // Set to home page if no hash
