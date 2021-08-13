@@ -61,9 +61,10 @@ async function Home() {
             ${Carousel()}
         </div>
     </div>
-    <div class="row-fluid text-center" id="about">
+    <div class="row text-center" id="about">
         <div 
-        style="margin-top:5vw; background-image: url(./images/background.png);background-attachment: fixed;background-repeat: no-repeat;background-size: 100% 120vw; padding: 2vw; font-family: Brush Script MT;"
+        class='text-center'
+        style="margin-top:5vw;width:100%; background-image: url(./images/background_original.png);background-attachment: fixed;background-repeat: no-repeat;background-size: 100% 120vw; padding: 2vw; font-family: Brush Script MT;"
         >
             <h1 style='color:white;font-size:5vw;'>Beautifully Handcrafted Beaded Crystal Suncatchers</h1>
         </div>
