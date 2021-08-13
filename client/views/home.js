@@ -63,7 +63,7 @@ async function Home() {
     </div>
     <div class="row-fluid text-center" id="about">
         <div 
-        style="margin-top:5vw; background-image: url(./images/background.png);background-attachment: fixed;background-repeat: no-repeat;background-size: cover; padding: 2vw; font-family: Brush Script MT;"
+        style="margin-top:5vw; background-image: url(./images/background.png);background-attachment: fixed;background-repeat: no-repeat;background-size: 100% 110vw; padding: 2vw; font-family: Brush Script MT;"
         >
             <h1 style='color:white;font-size:5vw;'>Beautifully Handcrafted Beaded Crystal Suncatchers</h1>
         </div>
