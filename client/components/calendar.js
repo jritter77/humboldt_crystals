@@ -45,11 +45,10 @@ async function setEvents() {
             let day = parseInt(el.innerHTML);
             
             if (ev.day === day) {
-                let p = document.createElement("p");
-                p.innerHTML = ev.title;
-                p.style.fontSize = '.8em';
+                let p = document.createElement("div");
+                el.style.backgroundColor = 'violet';
                 p.className = 'calendarEvent';
-                p.id= index;
+                p.id = index;
                 el.append(p);
                 return false;
             }
@@ -98,7 +97,6 @@ function printDays(i, month) {
         return `<b 
                 id='${dCount[((month-1 < 0) ? 11 : month-1)] + i}'
                 class='day text-muted'
-                style="background-color: ${((dCount[prevMonth] + i) === c_date && prevMonth === c_month && year === c_year) ? 'violet' : ''}"
                 >
                     ${dCount[((month-1 < 0) ? 11 : month-1)] + i}
                 </b>`;
@@ -107,7 +105,6 @@ function printDays(i, month) {
         return `<b 
                 id='${i - dCount[month]}'
                 class='day text-muted'
-                style="background-color: ${((i - dCount[month]) === c_date && nextMonth === c_month && year === c_year) ? 'violet' : ''}"
                 >
                     ${i - dCount[month]}
                 </b>`;
@@ -116,7 +113,6 @@ function printDays(i, month) {
         return `<b 
                 id='${i}'
                 class='day'
-                style="background-color: ${(i === c_date && month === c_month && year === c_year) ? 'violet' : ''}"
                 >
                     ${i}
                 </b>`;
