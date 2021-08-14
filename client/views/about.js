@@ -20,6 +20,8 @@ function About() {
             <img src=./images/aboutPic4.jpg style='width:100%;margin-top:2vw;'>
         </div>
     </div>
+    <div class='row' style='height:10vw'>
+    </div>
     `;
 }
 
