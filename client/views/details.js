@@ -72,6 +72,7 @@ async function Details() {
             ${ImageSelector(article)}
         </div>
     </div>
+    <div style='height:5vw'></div>
     `;
 
 
