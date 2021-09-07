@@ -147,7 +147,7 @@ async function editArticle(e) {
         await editRecord(id, title, desc, price, img, tags, opt);
         refreshArticles();
         $('#exampleModal').modal('hide');
-        $('#app').prepend(`<div class='alert alert-success' role='alert'>New Article created successfully!</div>`)
+        alert('Item Was Edited Successfully!');
     }
     else {
         $('#newArticleModal').addClass('was-validated');
