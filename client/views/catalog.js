@@ -101,7 +101,7 @@ async function addArticle(e) {
 
     let images = [];
     $('.uploadedImage').each((i, image) => {
-        images.push('./images/' + image.innerText);
+        images.push('./images/' + image.innerText.toLowerCase());
     });
 
 
