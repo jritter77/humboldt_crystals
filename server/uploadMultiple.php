@@ -51,7 +51,7 @@ for ($i = 0; $i < $fileCount; $i++) {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"][$i], $target_file)) {
         echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"][$i])) . " has been uploaded.<br>";
         } else {
-        echo "Sorry, there was an error uploading your file.<br>";
+        echo move_uploaded_file($_FILES["fileToUpload"]["tmp_name"][$i], $target_file);
         }
     }
 }
