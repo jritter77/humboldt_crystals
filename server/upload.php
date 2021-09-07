@@ -35,13 +35,13 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
   echo 'Only .jpg, .png, .jpeg, and .gif files are supported!';
 }
 
-
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 1) {
+  
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
       echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
     } else {
-      echo move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+      echo "Sorry, there was an error uploading your file.";
     }
   }
 
