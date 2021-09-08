@@ -98,7 +98,7 @@ const ImageSelector = (articleId) => {
 
 
     function getThumbnail(img) {
-        return `<img class='img-thumbnail' src='${img}' style='width:100%;'>`
+        return `<img class='img-thumbnail' src='${img.toLowerCase()}' style='width:100%;'>`
     }
 
     return `

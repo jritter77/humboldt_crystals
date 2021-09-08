@@ -33,7 +33,7 @@ function Article({id, title, img, description, price, tags}, index) {
     return (`
     <div style="margin-top:5vw;" class='col-sm-6 col-md-4'>
         <h4>${title}</h4>
-        <a href="#details-${id}"><img style="min-width:200px;min-height:200px;width:20vw;height:20vw;" class='img-thumbnail' src=${img} alt='img not found...'/><a>
+        <a href="#details-${id}"><img style="min-width:200px;min-height:200px;width:20vw;height:20vw;" class='img-thumbnail' src=${img.toLowerCase()} alt='img not found...'/><a>
         <p>${description}</p>
         <p><b>Number:</b> ${id}</p>
         <p><b>Tags:</b> ${(tags) ? (tags) : ""}</p>
