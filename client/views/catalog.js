@@ -286,10 +286,10 @@ async function Catalog() {
         </div>
         
     </div>
+    <div style='height: 5vw'></div>
     <div class='text-right fixed-bottom'>
         <button class='btn btn-secondary' id='topButton' style='margin:3vw;display:none;'>Top</button>
     </div>
-    <div style='height: 10%'></div>
     `;
 
     $('#topButton').click(goToTop);
