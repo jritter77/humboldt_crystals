@@ -124,8 +124,11 @@ async function editPost(e) {
 
 
 async function deletePost(id) {
-    await deleteNewsPost(id);
-    refreshPosts();
+    const c = confirm('Are you sure you want to delete this Post?');
+    if (c) {
+        await deleteNewsPost(id);
+        refreshPosts();
+    }
 }
 
 

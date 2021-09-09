@@ -158,8 +158,11 @@ async function editArticle(e) {
 
 // deletes article from db
 async function deleteArticle(id) {
-    await deleteRecord(id);
-    refreshArticles();
+    const c = confirm('Are you sure you want to delete this item?');
+    if (c) {
+        await deleteRecord(id);
+        refreshArticles();
+    }
 }
 
 
