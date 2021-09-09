@@ -85,7 +85,6 @@ async function Home() {
     `;
 
     
-    Calendar('calendarAndNews');
 
 
     $('.newspost').click(displayPost);
