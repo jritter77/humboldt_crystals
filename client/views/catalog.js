@@ -388,7 +388,7 @@ const typesFilter = () => {
     return `
         <div>
             <a data-toggle="collapse" href="#typeCollapse" role="button">
-                <b>Types:</b>
+                <b><u>Types&#9662;</u></b>
             </a>
             <div class="collapse" id="typeCollapse">
             ${types.map(checkBox).join('')}
@@ -406,7 +406,7 @@ const themesFilter = () => {
     return `
         <div>
             <a data-toggle="collapse" href="#themeCollapse" role="button">
-                <b>Themes:</b>
+                <b><u>Themes&#9662;</u></b>
             </a>
             <div class="collapse" id="themeCollapse">
             ${themes.map(checkBox).join('')}
@@ -431,7 +431,7 @@ const priceRange = () => {
     return `
         <div style='margin-top:1vw;'>
             <a data-toggle="collapse" href="#priceCollapse" role="button">
-                <b>Price:</b>
+                <b><u>Price&#9662;</u></b>
             </a>
             <div class="collapse" id="priceCollapse">
             ${ranges.map(radioButton).join('')}
