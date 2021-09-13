@@ -1,11 +1,13 @@
 import { Carousel } from "../components/carousel.js";
 import { Calendar, getEventDetail } from "../components/calendar.js";
 import { getAllPosts} from '../models/posts.js';
+import { getAllRecords } from "../models/articles.js";
 import { Modal } from '../components/modal.js';
 
 
 
 let posts = [];
+let articles = [];
 
 
 function displayEvent(el) {
@@ -47,6 +49,7 @@ async function Home() {
     const app = document.getElementById('app');
 
     posts = await getAllPosts();
+    articles = await getAllRecords();
 
     posts.reverse();
 
@@ -57,8 +60,8 @@ async function Home() {
     
     app.innerHTML = `
     <div class="row no-gutters">
-        <div class="col-md" style="margin-top:5vw;">
-            ${Carousel()}
+        <div class="col-md text-center" style="margin-top:5vw;">
+            ${Carousel(articles)}
         </div>
     </div>
     <div class="row text-center" id="about">
