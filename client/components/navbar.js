@@ -8,7 +8,7 @@ return `<nav class="navbar navbar-dark" id="nav" style="background: rgb(87,14,14
         <div class='row'>
             <div class='col'>
                 <div class="navbar-header">
-                    <a href='#home'><img src="./images/logo.png"  class="navbar-brand" href="#home"></a>
+                    <a href='#home'><img width=256 src="./images/logo.png"  class="navbar-brand" href="#home"></a>
                     
                 </div>
             </div>
