@@ -75,9 +75,9 @@ async function Home() {
     <div class="row" id="calendarAndNews">
         <div 
         class="col-md text-center rounded" 
-        style="margin:5vw; margin-top:5vw; padding-top:2vw; border: 2px solid purple;"
+        style="margin:5vw; margin-top:5vw; padding-top:2vw; border: 2px solid purple; background: rgb(87,14,140);background: linear-gradient(45deg, rgba(87,14,140,1) 0%, rgba(255,0,220,1) 100%);"
         >
-            <h2>News Feed</h2>
+            <h2 style='color:white;'>News Feed</h2>
             <div class='text-left overflow-auto' style='max-height: 80%;'>
                 ${posts.map((p, index) => post(p, index)).join('')}
             </div>

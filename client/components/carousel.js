@@ -36,12 +36,8 @@ function Carousel(articles) {
     }
 
     return `
-            <div id="carouselIndicators" class="carousel slide" data-ride="carousel" style='width:90%;height:30vw;margin-left:5%;'>
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselIndicators" data-slide-to="2"></li>
-                </ol>
+            <div id="carouselIndicators" class="carousel slide" data-ride="carousel" style='width:90%;height:${imgHeight};margin-left:5%;'>
+                
                 <div class="carousel-inner" >
                     ${fillImages()}
                 </div>
