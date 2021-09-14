@@ -7,6 +7,7 @@ async function getAllPosts() {
     }
     catch (err) {
         console.log(err);
+        console.log(await get('./server/posts/getAllPosts.php'));  // Shows php error
     }
 }
 
