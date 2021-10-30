@@ -93,7 +93,7 @@ function openEditArticle(index) {
 async function addArticle(e) {
     e.preventDefault();
 
-    const images = imgDrop.uploaded.map(e => './images/' + e);
+    const images = imgDrop.uploaded;
 
     const title = $('#newArticleTitle').val();
     const desc = $('#newArticleDesc').val();
@@ -160,7 +160,8 @@ async function deleteArticle(id) {
 function checkSearchTerm(a) {
     const title = a.title.toLowerCase().search(searchTerm.toLowerCase()) > -1;
     const desc = a.description.toLowerCase().search(searchTerm.toLowerCase()) > -1;
-    if (title || desc) {
+    const num = (a.id === parseInt(searchTerm));
+    if (title || desc || num) {
         return true;
     }
     return false;
