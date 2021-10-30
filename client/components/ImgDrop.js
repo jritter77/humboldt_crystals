@@ -1,6 +1,6 @@
-import { deleteImg, downloadImg } from "../models/imageHandling";
-import { uploadMulti } from "../models/webRequest";
-import { FileBrowser } from "./FileBrowser";
+import { deleteImg, downloadImg } from "../models/imageHandling.js";
+import { uploadMulti } from "../models/webRequest.js";
+import { FileBrowser } from "./FileBrowser.js";
 
 class ImgDrop {
     constructor() {
