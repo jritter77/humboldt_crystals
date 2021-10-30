@@ -1,4 +1,4 @@
-import { post } from "./webRequest";
+import { post } from "./webRequest.js";
 
 // Downloads a single image to the server with given filename 
 async function downloadImg(filename, url) {
