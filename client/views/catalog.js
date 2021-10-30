@@ -93,7 +93,7 @@ function openEditArticle(index) {
 async function addArticle(e) {
     e.preventDefault();
 
-    const images = imgDrop.uploaded.map(e => './images/' + e);
+    const images = imgDrop.uploaded;
 
     const title = $('#newArticleTitle').val();
     const desc = $('#newArticleDesc').val();
