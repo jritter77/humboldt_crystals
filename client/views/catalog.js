@@ -3,6 +3,7 @@ import { Modal } from "../components/modal.js";
 import { addRecord, deleteRecord, editRecord, getAllRecords } from "../models/articles.js";
 import { uploadImg } from "../models/webRequest.js";
 import { verifySession } from "../models/sessions.js";
+import { ImgDrop } from "../components/ImgDrop.js";
 
 
 /** PAGE VARS */
@@ -12,7 +13,8 @@ let articles;
 let searchTerm = "";
 let activeFilters;
 let activePriceRange;
-
+let imgDrop;
+let prevScrollTop = 0;
 
 
 
@@ -20,17 +22,23 @@ let activePriceRange;
 
 
 
-window.addEventListener("scroll", scrollFunction);
+window.addEventListener("scroll", () => scrollFunction());
 
 function scrollFunction() {
     if (location.hash.substring(1) === 'catalog') {
         const topButton = document.getElementById('topButton');
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            topButton.style.display = "inline";
+            if (document.documentElement.scrollTop < prevScrollTop) {
+                topButton.style.display = "inline";
+            }
+            else {
+                topButton.style.display = "none";
+            }
         }
         else {
             topButton.style.display = "none";
         }
+        prevScrollTop = document.documentElement.scrollTop;
     }
 }
 
@@ -50,6 +58,10 @@ function openNewArticle() {
 
     $('#modalSubmit').off('click');
     $('#modalSubmit').click(addArticle);
+
+    imgDrop.uploaded = [];
+    imgDrop.fileBrowser.clear();
+    imgDrop.showUploaded();
 }
 
 
@@ -62,36 +74,18 @@ function openEditArticle(index) {
     $('#newArticlePrice').val(a.price);
     $('#newArticleTags').val(a.tags);
 
-    // Clear any previous uploaded images from modal
-    $('#uploadedImages').html('');
-
-    // Show main image
-    $(uploadedImage(a.img.split('/').pop())).appendTo('#uploadedImages').click(removeImage);
-    
-    // Show all optional images
-    for (let image of opt) {
-        $(uploadedImage(image.split('/').pop())).appendTo('#uploadedImages').click(removeImage);
-    }
-
-
     $('#modalSubmit').off('click');
     $('#modalSubmit').click(editArticle);
+
+    imgDrop.uploaded = [];
+    imgDrop.fileBrowser.clear();
+
+    opt.unshift(a.img);
+
+    imgDrop.uploaded = opt;
+    imgDrop.showUploaded();
 }
 
-
-
-async function handleUpload() {
-    if (document.getElementById('fileToUpload').files.length > 0) {
-        const img = new FormData(document.getElementById('img_upload'));
-        $('#uploadResult').html('uploading...');
-        const result = await uploadImg(img);
-        $('#uploadResult').html(result);
-        $(uploadedImage(img.get('fileToUpload').name)).appendTo('#uploadedImages').click(removeImage); 
-    }
-    else {
-        $('#uploadResult').html('');
-    }
-}
 
 
 
@@ -99,11 +93,7 @@ async function handleUpload() {
 async function addArticle(e) {
     e.preventDefault();
 
-    let images = [];
-    $('.uploadedImage').each((i, image) => {
-        images.push('./images/' + image.innerText.toLowerCase());
-    });
-
+    const images = imgDrop.uploaded.map(e => './images/' + e);
 
     const title = $('#newArticleTitle').val();
     const desc = $('#newArticleDesc').val();
@@ -257,13 +247,6 @@ async function refreshArticles() {
 
 
 
-function removeImage(e) {
-    console.log(e.target.value)
-    const div = document.getElementById(e.target.value);
-    div.remove();
-}
-
-
 /** MAIN PAGE **/
 
 
@@ -279,6 +262,8 @@ async function Catalog() {
     // WRITE THE HTML TO THE APP CONTAINER  
     const app = document.getElementById('app');
 
+    imgDrop = new ImgDrop();
+
     app.innerHTML = `
     <div class='row no-gutters'>
         ${catalogCtl()}
@@ -290,7 +275,7 @@ async function Catalog() {
         
     </div>
     <div class='text-right fixed-bottom' style='margin:5vw;'>
-        <button class='btn btn-secondary' id='topButton' style='margin:3vw;display:none;'>Top</button>
+        <button class='btn btn-secondary' id='topButton' style='margin:3vw;display:none;width:128px'>Top</button>
     </div>
     <div style='height: 5vw'></div>
     
@@ -301,7 +286,7 @@ async function Catalog() {
     // create Modal for newArticle
     Modal('New Article', newArticleModal, addArticle);
 
-    $('#fileToUpload').on('change', handleUpload);
+    $('.modal-body').append(imgDrop.html);
 
     // Set onSubmit of search form
     $('#search').on('submit', handleSearch);
@@ -500,12 +485,6 @@ const newArticleModal = `
                 <input type='text' class='form-control' id='newArticleTags' placeholder='tag1, tag2, tag3...'>
             </div>
         </form>
-        <form id='img_upload' class='needs-validation' novalidate>
-            Select Cover Image:
-            <input type='file' name='fileToUpload' id='fileToUpload' >
-            <div id='uploadResult'></div>
-        </form> 
-        <div id=uploadedImages></div> 
     `;
 
 
