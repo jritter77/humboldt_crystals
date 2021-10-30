@@ -1,4 +1,4 @@
-import { uploadImg, uploadMulti } from "../models/webRequest";
+import { uploadImg, uploadMulti } from "../models/webRequest.js";
 
 class FileBrowser {
     constructor() {
