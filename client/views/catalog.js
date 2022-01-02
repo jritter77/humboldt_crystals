@@ -4,6 +4,7 @@ import { addRecord, deleteRecord, editRecord, getAllRecords } from "../models/ar
 import { uploadImg } from "../models/webRequest.js";
 import { verifySession } from "../models/sessions.js";
 import { ImgDrop } from "../components/ImgDrop.js";
+import { ArticleTags } from "../components/ArticleTags.js";
 
 
 /** PAGE VARS */
@@ -16,6 +17,8 @@ let activePriceRange;
 let imgDrop;
 let prevScrollTop = 0;
 
+
+const articleTags = new ArticleTags();
 
 
 /** PAGE FUNCTIONS */
@@ -59,6 +62,8 @@ function openNewArticle() {
     $('#modalSubmit').off('click');
     $('#modalSubmit').click(addArticle);
 
+    articleTags.clear();
+
     imgDrop.uploaded = [];
     imgDrop.fileBrowser.clear();
     imgDrop.showUploaded();
@@ -72,7 +77,10 @@ function openEditArticle(index) {
     $('#newArticleTitle').val(a.title);
     $('#newArticleDesc').val(a.description);
     $('#newArticlePrice').val(a.price);
-    $('#newArticleTags').val(a.tags);
+
+    articleTags.clear();
+
+    articleTags.load(a.tags);
 
     $('#modalSubmit').off('click');
     $('#modalSubmit').click(editArticle);
@@ -99,8 +107,9 @@ async function addArticle(e) {
     const desc = $('#newArticleDesc').val();
     const price = $('#newArticlePrice').val();
     const img = images[0];
-    const tags = $('#newArticleTags').val();
+    const tags = articleTags.getChecked();
     const opt = images.slice(1).join(' ');
+
 
     if (title && desc && price && img) {
         await addRecord(title, desc, price, img, tags, opt);
@@ -120,17 +129,14 @@ async function editArticle(e) {
     e.preventDefault();
 
 
-    let images = [];
-    $('.uploadedImage').each((i, image) => {
-        images.push('./images/' + image.innerText.toLowerCase());
-    })
+    let images = imgDrop.uploaded;
 
     const id = this.value;
     const title = $('#newArticleTitle').val();
     const desc = $('#newArticleDesc').val();
     const price = $('#newArticlePrice').val();
     const img = images[0];
-    const tags = $('#newArticleTags').val();
+    const tags = articleTags.getChecked();
     const opt = images.slice(1).join(' ');
 
     if (title && desc && price && img) {
@@ -244,6 +250,12 @@ async function refreshArticles() {
     $('.deleteArticleButton').each((i, e) => {
         e.onclick = () => deleteArticle(e.value);
     })
+
+    // Set onclick event of all editArticleButtons
+    $('.editArticleButton').each((i, e) => {
+        e.onclick = () => openEditArticle(e.value);
+    });
+
 }
 
 
@@ -286,6 +298,10 @@ async function Catalog() {
 
     // create Modal for newArticle
     Modal('New Article', newArticleModal, addArticle);
+
+
+    $('#articleTags').append(articleTags.html);
+
 
     $('.modal-body').append(imgDrop.html);
 
@@ -370,10 +386,11 @@ const checkBox = label => `
     </div>`;
 
 
+const types = ['Car Charms', 'Angels', 'Single Strand Suncatcher', 'Double Strand Suncatcher',
+                    'Triple Strand Suncatcher', 'Multiple Strand Suncatcher', 'Earrings'];
 
 const typesFilter = () => {
-    const types = ['Car Charms', 'Angels', 'Single Strand Suncatcher', 'Double Strand Suncatcher',
-                    'Triple Strand Suncatcher', 'Multiple Strand Suncatcher', 'Earrings'];
+    
 
     return `
         <div>
@@ -389,9 +406,10 @@ const typesFilter = () => {
     
 }
 
+const themes = ['Animals', 'Nature', 'Sports', 'Redwood'];
 
 const themesFilter = () => {
-    const themes = ['Animals', 'Nature', 'Sports', 'Redwood'];
+    
 
     return `
         <div>
@@ -481,9 +499,8 @@ const newArticleModal = `
                     Please enter a price.
                 </div>
             </div>
-            <div class='form-group'>
+            <div class='form-group' id="articleTags">
                 <label for='newArticleTags'>Tags</label>
-                <input type='text' class='form-control' id='newArticleTags' placeholder='tag1, tag2, tag3...'>
             </div>
         </form>
     `;

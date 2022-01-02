@@ -18,7 +18,6 @@ function Carousel(articles) {
             slides = 3;
         }
 
-        console.log(document.documentElement.clientWidth, window.innerWidth);
 
 
         for (let slide=0; slide<slides; slide++) {
